@@ -1,18 +1,46 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <div class="page-title">
+      <h3>Счет</h3>
+
+      <button @click="refresh" class="btn waves-effect waves-light btn-small">
+        <i class="material-icons">refresh</i>
+      </button>
+    </div>
+
+    <Loader v-if="loading" />
+
+    <div v-else class="row">
+      <HomeBill :rates="currency.rates" />
+
+      <HomeCurrency :rates="currency.rates" :date="currency.date" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HomeBill from '@/components/HomeBill'
+import HomeCurrency from '@/components/HomeCurrency'
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  name: 'home',
+  components: { HomeBill, HomeCurrency },
+  data: () => ({
+    loading: true,
+    currency: null,
+  }),
+  methods: {
+    async refresh() {
+      this.loading = true
+      this.currency = await this.$store.dispatch('fetchCurrency')
+      this.loading = false
+    },
   },
-};
+  async mounted() {
+    this.currency = await this.$store.dispatch('fetchCurrency')
+    this.loading = false
+  },
+}
 </script>
+
+<style></style>
