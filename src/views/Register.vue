@@ -1,7 +1,7 @@
 <template>
   <form @click.prevent="submitHandler" class="card auth-card">
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
+      <span class="card-title">{{ 'HomeAccount' | localize }}</span>
       <div class="input-field">
         <input
           v-model.trim="email"
@@ -17,12 +17,12 @@
         <small
           v-if="$v.email.$dirty && !$v.email.required"
           class="helper-text invalid"
-          >Поле Email не должно быть пустым</small
+          >{{ 'EmailRequired' | localize }}</small
         >
         <small
           v-else-if="$v.email.$dirty && !$v.email.email"
           class="helper-text invalid"
-          >Введите корректный Email</small
+          >{{ 'EmailIncorrect' | localize }}</small
         >
       </div>
       <div class="input-field">
@@ -36,18 +36,18 @@
           id="password"
           type="password"
         />
-        <label for="password">Пароль</label>
+        <label for="password">{{ 'Password' | localize }}</label>
         <small
           v-if="$v.password.$dirty && !$v.password.required"
           class="helper-text invalid"
-          >Введите пароль</small
+          >{{ 'PasswordRequired' | localize }}</small
         >
         <small
           v-else-if="$v.password.$dirty && !$v.password.minLength"
           class="helper-text invalid"
-          >Пароль должен быть не менее
-          {{ $v.password.$params.minLength.min }} символов. Сейчас он
-          {{ password.length }}.</small
+          >{{ 'PasswordMust' | localize }}
+          {{ $v.password.$params.minLength.min }} {{ 'Symbols' | localize }}.
+          {{ 'NoPasswordIs' | localize }} - {{ password.length }}.</small
         >
       </div>
       <div class="input-field">
@@ -63,27 +63,27 @@
         <small
           v-if="$v.name.$dirty && !$v.name.required"
           class="helper-text invalid"
-          >Введите ваше имя</small
+          >{{ 'EnterName' | localize }}</small
         >
       </div>
       <p>
         <label>
           <input v-model="agree" name="agree" type="checkbox" />
-          <span>С правилами согласен</span>
+          <span>{{ 'Agree' | localize }}</span>
         </label>
       </p>
     </div>
     <div class="card-action">
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
-          Зарегистрироваться
+          {{ 'Reqister' | localize }}
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Уже есть аккаунт?
-        <router-link to="/login">Войти!</router-link>
+        {{ 'HaveAccount' | localize }}?
+        <router-link to="/login">{{ 'Login' | localize }}!</router-link>
       </p>
     </div>
   </form>

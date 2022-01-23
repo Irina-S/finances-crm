@@ -8,7 +8,9 @@
       :to="link.url"
       :exact="link.exact"
     >
-      <a href="#" class="waves-effect waves-orange pointer">{{ link.title }}</a>
+      <a href="#" class="waves-effect waves-orange pointer">{{
+        link.title | localize
+      }}</a>
     </router-link>
   </ul>
 </template>
@@ -18,11 +20,11 @@ export default {
   props: ['value'],
   data: () => ({
     links: [
-      { title: 'Счет', url: '/', exact: true },
-      { title: 'История', url: '/history' },
-      { title: 'Планирование', url: '/planning' },
-      { title: 'Новая запись', url: '/record' },
-      { title: 'Категории', url: '/categories' },
+      { title: 'Menu_Bill', url: '/', exact: true },
+      { title: 'Menu_History', url: '/history' },
+      { title: 'Menu_Planning', url: '/planning' },
+      { title: 'Menu_NewRecord', url: '/record' },
+      { title: 'Menu_Categories', url: '/categories' },
     ],
   }),
 }

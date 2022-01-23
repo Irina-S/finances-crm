@@ -70,7 +70,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const auth = getAuth()
   const currentUser = auth.currentUser
-  console.log(currentUser)
   const requireAuth = to.matched.some((record) => record.meta.auth)
 
   if (requireAuth && !currentUser) {

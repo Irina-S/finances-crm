@@ -1,22 +1,23 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планирование</h3>
+      <h3>{{ 'Menu_Planning' | localize }}</h3>
       <h4>{{ info.bill | currency('RUB') }}</h4>
     </div>
 
     <Loader v-if="loading" />
 
     <p v-else-if="!this.categories.length" class="center">
-      Категорий пока нет.
-      <router-link to="/categories">Добавить новую категорию</router-link>
+      {{ 'NoCategories' | localize }}.
+      <router-link to="/categories">{{ 'AddNewCat' | localize }}</router-link>
     </p>
 
     <section v-else>
       <div v-for="category in categories" :key="category.id">
         <p>
           <strong>{{ category.title }}:</strong>
-          {{ category.spend | currency }} из {{ category.limit | currency }}
+          {{ category.spend | currency }} {{ 'Of' | localize }}
+          {{ category.limit | currency }}
         </p>
         <div v-tooltip="category.tooltip" class="progress">
           <div
